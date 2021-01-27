@@ -1,2 +1,2 @@
 # holbertonschool-interview
-Algorithms for job interviews
+A coding interview or programming interview is a job interview technique based on technical problems to evaluate potential employees.  The technique was pioneered by Microsoft and later developed by other large technology companies such as Amazon, Facebook and Google. Coding interviews assess candidates' technical knowledge, coding ability, problem-solving skills, and creativity, usually on a whiteboard. Candidates typically have a degree in computer science, information science, computer engineering or electrical engineering, and are asked to solve programming problems, algorithms and puzzles. Coding interviews are usually conducted in person or virtually.
