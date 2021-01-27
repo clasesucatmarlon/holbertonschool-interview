@@ -7,12 +7,12 @@ sequentially from 0 to n - 1 and each box may contain keys to the other boxes.
 def canUnlockAll(boxes):
     """ Write a method that determines if all the boxes can be opened
     """
-    pocket = [0]
-    for key in pocket:
+    array = [0]
+    for key in array:
         for key_box in boxes[key]:
-            if key_box not in pocket:
+            if key_box not in array:
                 if key_box < len(boxes):
-                    pocket.append(key_box)
-    if len(pocket) == len(boxes):
+                    array.append(key_box)
+    if len(array) == len(boxes):
         return True
     return False
