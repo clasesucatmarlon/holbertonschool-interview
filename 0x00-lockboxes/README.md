@@ -22,7 +22,7 @@ Write a method that determines if all the boxes can be opened.
 * There can be keys that do not have boxes: The first box boxes[0] is unlocked
 * Return True if all boxes can be opened, else return False
 
-## Example:
+### Example:
 ```
 carrie@ubuntu:~/0x00-lockboxes$ cat main_0.py
 #!/usr/bin/python3
