@@ -1,18 +1,14 @@
 #!/usr/bin/python3
 
 def canUnlockAll(boxes):
-    newlist = []
-    total = len(boxes)
-
-    for array in boxes:
-        if (len(array) == 0 and array is not boxes[total - 1]):
-            return False
-        for j in array:
-            newlist.append(j)
-
-
-    for i, k in enumerate(boxes):
-        if i in newlist or i < (total - 1):
-            return True
-        else:
-            return False
+    """ Write a method that determines if all the boxes can be opened
+    """
+    pocket = [0]
+    for key in pocket:
+        for key_box in boxes[key]:
+            if key_box not in pocket:
+                if key_box < len(boxes):
+                    pocket.append(key_box)
+    if len(pocket) == len(boxes):
+        return True
+    return False
