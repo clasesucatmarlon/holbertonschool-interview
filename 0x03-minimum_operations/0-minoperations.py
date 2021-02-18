@@ -20,7 +20,7 @@ def factors(n):
             mylist.append(i)
             n = n / i
     if n > 2:
-        """ mylist.append(n) """
+        mylist.append(n)
     return mylist
 
 
