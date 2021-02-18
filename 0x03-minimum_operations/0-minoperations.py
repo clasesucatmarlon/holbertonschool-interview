@@ -9,7 +9,8 @@ import math
 
 
 def factors(n):
-    """calculates the factors of n number"""
+    """ calculates the factors of n number
+    """
     mylist = []
     while n % 2 == 0:
         mylist.append(2)
@@ -24,7 +25,8 @@ def factors(n):
 
 
 def minOperations(n):
-    """calculate the minimum operations"""
+    """ calculate the minimum operations
+    """
     if type(n) != int or n < 2:
         return 0
     else:
