@@ -34,7 +34,8 @@ int recursive_bsearch(int *array, size_t size, int value, unsigned int index)
 	else if (array[mid] > value)
 		return (recursive_bsearch(array, mid, value, index));
 	else if (array[mid] < value)
-		return (recursive_bsearch(array + mid + 1, size - mid - 1, value, index + mid + 1));
+		return (recursive_bsearch(array + mid + 1, size - mid - 1,
+				value, index + mid + 1));
 	return (-2);
 }
 
