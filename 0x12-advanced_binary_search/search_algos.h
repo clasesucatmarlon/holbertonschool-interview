@@ -1,16 +1,9 @@
-#ifndef _HOLBERTON_H_
-#define _HOLBERTON_H_
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
-#include <ctype.h>
-#include <string.h>
+#ifndef ADV_BINARY_SEARCH
+#define ADV_BINARY_SEARCH
 
-/* Prototypes */
-void print_array(int *array, size_t size);
-int recursive_bsearch(int *array, size_t size, int value, unsigned int index);
-int linear_search(int *array, size_t size, int value);
-int binary_search(int *array, size_t size, int value);
+#include <stdlib.h>
+#include <stdio.h>
+
 int advanced_binary(int *array, size_t size, int value);
 
-#endif
+#endif /* ADV_BINARY_SEARCH */
