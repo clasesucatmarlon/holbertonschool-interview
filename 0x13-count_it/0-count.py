@@ -1,50 +1,38 @@
 #!/usr/bin/python3
-"""recursive count it
 """
-import requests as r
+Query the Reddit API, parse the titles of all hot articles for a given
+subreddit, and print a sorted count of given keywords
+"""
+import requests
 
 
-HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'}
-
-
-def recursive_call(reddit, top_list=[], after="null"):
-    """return number of subscribers"""
-    URL = "https://www.reddit.com/r/{}.json?sort=hot&after={}&limit=100".format(reddit, after)
-
-    try:
-        subscribers = r.get(URL, headers=HEADERS,
-                            allow_redirects=False).json()
-        data = subscribers.get("data")
-        after = subscribers.get("data").get("after")
-        top_list += [story.get("data")['title'] for story in data['children']]
-        if after:
-            recursive_call(reddit, top_list, after)
-        return top_list
-    except Exception:
-        pass
-
-
-def count_words(reddit, word_list, array=None, dic={}):
-    """ count words - method
+def count_words(subreddit, word_list, hot_list=[], after=''):
     """
-
-    if dic == {}:
-        for word in word_list:
-            dic.update({word: 0})
-    if array is None:
-        array = recursive_call(reddit)
-    if array and len(array) > 0:
-        if word_list != []:
-            word_list = list(set(word_list))
-            for item in array:
-                item = item.lower()
-                if word_list[-1].lower() in item.split():
-                    if word_list[-1] in dic.keys():
-                        dic[word_list[-1]] += 1
-            word_list.pop(-1)
-            count_words(reddit, word_list, array, dic)
-        else:
-            for key in sorted(dic.items(), key=lambda kv: (-kv[1], kv[0])):
-                if key[1] != 0:
-                    print("{}: {}".format(key[0], key[1]))
+    Query the Reddit API, parse the titles of all hot articles for a given
+    subreddit, and print a sorted count of given keywords
+    """
+    try:
+        r = requests.get('https://www.reddit.com/r/{}/hot.json?after={}'.
+                         format(subreddit, after),
+                         headers={'User-Agent': 'custom'},
+                         allow_redirects=False)
+        if after is None:
+            dict = {}
+            for word in word_list:
+                for hot_word in hot_list:
+                    if word == hot_word:
+                        if word not in dict:
+                            dict[word] = 1
+                        else:
+                            dict[word] += 1
+            for word in sorted(dict, key=dict.get, reverse=True):
+                if dict[word]:
+                    print('{}: {}'.format(word, dict[word]))
+            return hot_list
+        for thread in r.json().get('data').get('children'):
+            hot_list += thread.get('data').get('title').lower().split()
+        after = r.json().get('data').get('after')
+        count_words(subreddit, word_list, hot_list, after)
+        return hot_list
+    except:
+        return None
