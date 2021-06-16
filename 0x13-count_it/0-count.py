@@ -5,15 +5,12 @@ import requests as r
 
 
 HEADERS = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) \
-            AppleWebKit/537.36 (KHTML, like Gecko)\
-                 Chrome/87.0.4280.88 Safari/537.36'}
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36'}
 
 
 def recursive_call(reddit, top_list=[], after="null"):
     """return number of subscribers"""
-    URL = "https://www.reddit.com/r/{}.json?sort=hot&after={}&limit=100"\
-          .format(reddit, after)
+    URL = "https://www.reddit.com/r/{}.json?sort=hot&after={}&limit=100".format(reddit, after)
 
     try:
         subscribers = r.get(URL, headers=HEADERS,
